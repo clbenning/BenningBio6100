@@ -1,0 +1,8 @@
+---
+title: "homework_links"
+author: "clbenning"
+date: "2025-01-22"
+output: html_document
+---
+
+Week 2 Homework [hw2 Link](hw2.html)
