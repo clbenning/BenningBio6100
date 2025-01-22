@@ -6,3 +6,6 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Weekly Homeworks"
+      href: homework.html
+
