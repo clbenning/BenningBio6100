@@ -67,7 +67,7 @@ Using the orginial code I needed to identify the first three letters of the two 
 
 ### *Pathogen Binary*
 
-In the "pathogen_binary" column I would expect to see only binary data (1s and 0s), however there are entries that are NA indicating that the data was not collected for whatever reason so I will leave it as it. If I were to replace it I would 
+In the "pathogen_binary" column I would expect to see only binary data (1s and 0s), however there are entries that are NA indicating that the data was not collected for whatever reason so I will leave it as it. If I were to replace it I would do:
 ```{}
 Find what: \bNA\b
 Replace with: 0
