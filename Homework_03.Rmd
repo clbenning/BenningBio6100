@@ -69,8 +69,8 @@ Using the orginial code I needed to identify the first three letters of the two 
 
 In the "pathogen_binary" column I would expect to see only binary data (1s and 0s), however there are entries that are NA indicating that the data was not collected for whatever reason so I will leave it as it. If I were to replace it I would 
 ```{}
-Find: \NA
-Replace: 0
+Find what: \bNA\b
+Replace with: 0
 ```
 
 ### *bombus_spp and host_plant*
