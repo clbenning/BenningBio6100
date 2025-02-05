@@ -1,0 +1,154 @@
+---
+title: "Homework 4"
+author: "clbenning"
+date: "2025-02-05"
+output: html_document
+---
+
+## Question 1
+
+```{r}
+x <- 1.1
+a <- 2.2 
+b <- 3.3
+```
+
+### Question 1a
+```{r}
+z <- x^{a^b}
+print(z)
+```
+
+### Question 1b
+```{r}
+z <- {x^a}^b
+
+print(z)
+```
+
+### Question 1c
+```{r}
+z <- 3*{x^3} + 2*{x^2} + 1
+
+print(z)
+```
+
+## Question 2 
+
+### Question 2a 
+
+vec_a <- c(seq(1:8), seq(7,1))
+
+print(vec_a)
+
+[1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1
+
+### Question 2b
+
+vec_b <- c(seq(1:5))
+
+vec_b <- rep(x = vec_b, times = vec_b)
+
+print(vec_b)
+
+[1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5
+
+### Question 2c 
+
+vec_c1 <- c(seq(1:5))
+
+vec_c2 <- c(seq(5,1))
+
+vec_c <- rep(x = vec_c2, times = vec_c1)
+
+print(vec_c)
+
+[1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1
+
+
+## Question 3 
+
+coord <- runif(2)
+
+print(coord)
+
+[1] 0.6778340 0.3549398
+
+polar_coord <- c(sqrt(coord[1]^2+coord[2]^2),atan(coord[2]/coord[1]))
+
+print(polar_coord)
+
+[1] 0.7651413 0.4823789
+
+## Question 4
+```{r}
+queue <- c("sheep", "fox", "owl", "ant")
+```
+### Question 4a
+
+```{r}
+# The serpent arrives and gets in line
+queue[5] <- "serpent"
+print(queue)
+```
+
+### Question 4b
+
+```{r}
+# The sheep enters the Ark 
+queue <- queue[-1]
+print(queue)
+```
+
+### Question 4c
+
+```{r}
+# The donkey arrives and talks his way to the front of the line
+queue <- c("donkey", queue)
+print(queue)
+```
+
+### Question 4d
+
+```{r}
+# The serpent gets impatient and leaves 
+queue <- queue[-5]
+print(queue)
+```
+
+### Question 4e
+
+```{r}
+# The owl gets bored and leaves 
+queue <- queue[-3]
+print(queue)
+```
+
+### Question 4f
+
+```{r}
+# The aphid arrives and the ant invites him to cut in line.
+queue <- c(queue[1:2], "aphid", queue[3])
+print(queue)
+```
+
+### Question 4g
+
+```{r}
+# Finally, determine the position of the aphid in the line.
+which(queue == "aphid")
+```
+
+## Question 5
+
+```{r}
+vec <- 1:100
+vec <- which((vec%%2 != 0) & (vec%%3 != 0) & (vec%%7 != 0))
+print(vec)
+```
+
+
+
+
+
+

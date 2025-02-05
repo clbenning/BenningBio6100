@@ -11,9 +11,9 @@
 
 <meta name="author" content="clbenning" />
 
-<meta name="date" content="2025-01-29" />
+<meta name="date" content="2025-02-05" />
 
-<title>Homework 3</title>
+<title>Homework 4</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -265,124 +265,132 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homework 3</h1>
+<h1 class="title toc-ignore">Homework 4</h1>
 <h4 class="author">clbenning</h4>
-<h4 class="date">2025-01-29</h4>
+<h4 class="date">2025-02-05</h4>
 
 </div>
 
 
 <div id="question-1" class="section level2">
-<h2>Question #1</h2>
-<pre><code>Find: \s{2,}
-Replace: ,</code></pre>
-<p>In this problem I needed to remove a series of spaces, not just all
-spaces, and replace them with a comma. The regular expression find
-spaces, and adding {2,} found 2 or more consecutive spaces.</p>
+<h2>Question 1</h2>
+<pre class="r"><code>x &lt;- 1.1
+a &lt;- 2.2 
+b &lt;- 3.3</code></pre>
+<div id="question-1a" class="section level3">
+<h3>Question 1a</h3>
+<pre class="r"><code>z &lt;- x^{a^b}
+print(z)</code></pre>
+<pre><code>## [1] 3.61714</code></pre>
+</div>
+<div id="question-1b" class="section level3">
+<h3>Question 1b</h3>
+<pre class="r"><code>z &lt;- {x^a}^b
+
+print(z)</code></pre>
+<pre><code>## [1] 1.997611</code></pre>
+</div>
+<div id="question-1c" class="section level3">
+<h3>Question 1c</h3>
+<pre class="r"><code>z &lt;- 3*x^3 + 2*x^2 + 1
+
+print(z)</code></pre>
+<pre><code>## [1] 7.413</code></pre>
+</div>
 </div>
 <div id="question-2" class="section level2">
-<h2>Question #2</h2>
-<pre><code>Find: ([A-Za-z]+), \s([A-Za-a]+), \s(.+)
-Replace: \2\1(\3)</code></pre>
-<p>To remove the commas I needed to identify the groups of words
-separately from the commas themselves. In order to achieve this I placed
-the commas outside the parentheses to ensure they were not a part of my
-group. The command ([A-Za-z]+) identifies a consecutive string of letter
-characters containing capitalized and lowercase letters. (.+) Identified
-every character except a new line, grouping the university titles
-together regardless of word count, allowing me to put parenthenses
-around that group in the replace function.</p>
+<h2>Question 2</h2>
+<div id="question-2a" class="section level3">
+<h3>Question 2a</h3>
+<p>vec_a &lt;- c(seq(1:8), seq(7,1))</p>
+<p>print(vec_a)</p>
+<p>[1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</p>
+</div>
+<div id="question-2b" class="section level3">
+<h3>Question 2b</h3>
+<p>vec_b &lt;- c(seq(1:5))</p>
+<p>vec_b &lt;- rep(x = vec_b, times = vec_b)</p>
+<p>print(vec_b)</p>
+<p>[1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</p>
+</div>
+<div id="question-2c" class="section level3">
+<h3>Question 2c</h3>
+<p>vec_c1 &lt;- c(seq(1:5))</p>
+<p>vec_c2 &lt;- c(seq(5,1))</p>
+<p>vec_c &lt;- rep(x = vec_c2, times = vec_c1)</p>
+<p>print(vec_c)</p>
+<p>[1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</p>
+</div>
 </div>
 <div id="question-3" class="section level2">
-<h2>Question #3</h2>
-<pre><code>Find: (?&lt;=.mp3)(\s)
-Replace: \n</code></pre>
-<p>The initial text was a single string of text that needed to be broken
-into lines using the regular expression to create a new line. To
-identify all characters before “.mp3” I used ?&lt;=.and created the new
-line following the chunk of text .mp3</p>
+<h2>Question 3</h2>
+<p>coord &lt;- runif(2)</p>
+<p>print(coord)</p>
+<p>[1] 0.6778340 0.3549398</p>
+<p>polar_coord &lt;-
+c(sqrt(coord[1]<sup>2+coord[2]</sup>2),atan(coord[2]/coord[1]))</p>
+<p>print(polar_coord)</p>
+<p>[1] 0.7651413 0.4823789</p>
 </div>
 <div id="question-4" class="section level2">
-<h2>Question #4</h2>
-<pre><code>Find: (\d{4})([^.mp3]*)
-Replace:\2_\1</code></pre>
-<p>Similar to the last problem I needed to identify .mp3, but this time
-I wanted to exclude everything before that chunk of text using ^. The
-*outside of the brackets identified everything following. () made a
-group of the first four digits in the line of text. I then placed the
-second group before the first group identified in the regular expression
-and put a _ between them to achieve the desired result.</p>
+<h2>Question 4</h2>
+<pre class="r"><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)</code></pre>
+<div id="question-4a" class="section level3">
+<h3>Question 4a</h3>
+<pre class="r"><code># The serpent arrives and gets in line
+queue[5] &lt;- &quot;serpent&quot;
+print(queue)</code></pre>
+<pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+</div>
+<div id="question-4b" class="section level3">
+<h3>Question 4b</h3>
+<pre class="r"><code># The sheep enters the Ark 
+queue &lt;- queue[-1]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+</div>
+<div id="question-4c" class="section level3">
+<h3>Question 4c</h3>
+<pre class="r"><code># The donkey arrives and talks his way to the front of the line
+queue &lt;- c(&quot;donkey&quot;, queue)
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+</div>
+<div id="question-4d" class="section level3">
+<h3>Question 4d</h3>
+<pre class="r"><code># The serpent gets impatient and leaves 
+queue &lt;- queue[-5]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
+</div>
+<div id="question-4e" class="section level3">
+<h3>Question 4e</h3>
+<pre class="r"><code># The owl gets bored and leaves 
+queue &lt;- queue[-3]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;ant&quot;</code></pre>
+</div>
+<div id="question-4f" class="section level3">
+<h3>Question 4f</h3>
+<pre class="r"><code># The aphid arrives and the ant invites him to cut in line.
+queue &lt;- c(queue[1:2], &quot;aphid&quot;, queue[3])
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
+</div>
+<div id="question-4g" class="section level3">
+<h3>Question 4g</h3>
+<pre class="r"><code># Finally, determine the position of the aphid in the line.
+which(queue == &quot;aphid&quot;)</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
 </div>
 <div id="question-5" class="section level2">
-<h2>Question #5</h2>
-<pre><code>Find: (\w)(\w+),(\w+),.*?,(\d)
-Replace: \1_\3, \4</code></pre>
-<p>The objective here was to creates groups that identified the first
-character of the first word () then the rest of the first word before
-the comma (+), the second word in its entirety (+), any single character
-with a period and * means zero or more occurrences of any character and
-the ? identifies as few characters as possible since some values had
-more digits than others… compiling to .*? before the next comma, and the
-the group of digits (. I then needed to remove the second group, leaving
-only the first character of the first word, add an underscore before the
-third group, omit the string of random digits (which is why they werent
-in a group), and then place the fourth group after a comma.</p>
-</div>
-<div id="question-6" class="section level2">
-<h2>Question #6</h2>
-<pre><code>Find: (\w)\w+,(.{4})\w+,\d+.\d+,(\d+)
-Replace: \1_\2,\3</code></pre>
-<p>Similarly to the last problem I had to identify specific characters
-in the string of plain text. In this problem however I needed to
-identify the first four letter in the second word using (.{4}). The
-period indicates any single character and the {4} limits those
-characters to a total of 4. Again I needed to remove the rest of the
-first word, the rest of the second word, and random digits so I didn’t
-put them in a group.</p>
-</div>
-<div id="question-7" class="section level2">
-<h2>Question #7</h2>
-<pre><code>Find: (.{3})\w+,(.{3})\w+,(\d+.\d+),(\d+)
-Replace: \1\2, \4, \3</code></pre>
-<p>Using the orginial code I needed to identify the first three letters
-of the two words using (.{3})+. The first three letters were inside
-parentheses to identify them as a group I wanted to keep. Unlike the
-last two problems, I want to keep all of the digits in this regular
-expression so I placed them both in groups using parentheses. I then
-reordered the groups to achieve the desired plain text in the new
-order.</p>
-</div>
-<div id="question-8" class="section level2">
-<h2>Question #8</h2>
-<div id="pathogen-binary" class="section level3">
-<h3><em>Pathogen Binary</em></h3>
-<p>In the “pathogen_binary” column I would expect to see only binary
-data (1s and 0s), however there are entries that are NA indicating that
-the data was not collected for whatever reason so I will leave it as it.
-If I were to replace it I would do:</p>
-<pre><code>Find what: \bNA\b
-Replace with: 0</code></pre>
-</div>
-<div id="bombus_spp-and-host_plant" class="section level3">
-<h3><em>bombus_spp and host_plant</em></h3>
-<p>There are excess characters in this column that are not part of the
-species name. I used ^ to identify all characters that are not a single
-character, space, or line break. Then we needed to remove the
-underscores because they are not considered special characters</p>
-<pre><code>Find: [^\w\s\r\n]
-Replace: nothing
-
-Find:_
-Replace: nothing</code></pre>
-</div>
-<div id="bee_caste" class="section level3">
-<h3><em>bee_caste</em></h3>
-<p>The main issue with this column is that a male bee is a “drone”
-whereas a female is a “worker”, so the data is technically just
-inconsistent with it’s nomenclature.</p>
-<pre><code>Find: male
-Replace: drone</code></pre>
-</div>
+<h2>Question 5</h2>
+<pre class="r"><code>vec &lt;- 1:100
+vec &lt;- which((vec%%2 != 0) &amp; (vec%%3 != 0) &amp; (vec%%7 != 0))
+print(vec)</code></pre>
+<pre><code>##  [1]  1  5 11 13 17 19 23 25 29 31 37 41 43 47 53 55 59 61 65 67 71 73 79 83 85
+## [26] 89 95 97</code></pre>
 </div>
 
 
