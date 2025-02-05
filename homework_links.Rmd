@@ -9,3 +9,5 @@ Lab Week 2 Practice Homework [hw2 Link](hw2.html)
 
 Lab Week 3 [Homework 3](Homework_03.html)
 
+Lab Week 4 [Homework 4](Homework_04.html)
+
