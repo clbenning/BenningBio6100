@@ -308,29 +308,35 @@ print(z)</code></pre>
 </div>
 <div id="question-2b" class="section level3">
 <h3>Question 2b</h3>
-<p>vec_b &lt;- c(seq(1:5))</p>
-<p>vec_b &lt;- rep(x = vec_b, times = vec_b)</p>
-<p>print(vec_b)</p>
-<p>[1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</p>
+<pre class="r"><code>vec_b &lt;- c(seq(1:5))
+
+vec_b &lt;- rep(x = vec_b, times = vec_b)
+
+print(vec_b)</code></pre>
+<pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
 </div>
 <div id="question-2c" class="section level3">
 <h3>Question 2c</h3>
-<p>vec_c1 &lt;- c(seq(1:5))</p>
-<p>vec_c2 &lt;- c(seq(5,1))</p>
-<p>vec_c &lt;- rep(x = vec_c2, times = vec_c1)</p>
-<p>print(vec_c)</p>
-<p>[1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</p>
+<pre class="r"><code>vec_c1 &lt;- c(seq(1:5))
+
+vec_c2 &lt;- c(seq(5,1))
+
+vec_c &lt;- rep(x = vec_c2, times = vec_c1)
+
+print(vec_c)</code></pre>
+<pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
 </div>
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3</h2>
-<p>coord &lt;- runif(2)</p>
-<p>print(coord)</p>
-<p>[1] 0.6778340 0.3549398</p>
-<p>polar_coord &lt;-
-c(sqrt(coord[1]<sup>2+coord[2]</sup>2),atan(coord[2]/coord[1]))</p>
-<p>print(polar_coord)</p>
-<p>[1] 0.7651413 0.4823789</p>
+<pre class="r"><code>coord &lt;- runif(2)
+
+print(coord)</code></pre>
+<pre><code>## [1] 0.8775317 0.9961859</code></pre>
+<pre class="r"><code>polar_coord &lt;- c(sqrt(coord[1]^2+coord[2]^2),atan(coord[2]/coord[1]))
+
+print(polar_coord)</code></pre>
+<pre><code>## [1] 1.3275723 0.8486393</code></pre>
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
