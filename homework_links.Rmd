@@ -5,7 +5,7 @@ date: "2025-01-22"
 output: html_document
 ---
 
-Lab Week 2 Practice Homework [hw2 Link](hw2.html)
+Lab Week 2 Practice Homework [Homework 2](hw2.html)
 
 Lab Week 3 [Homework 3](Homework_03.html)
 
