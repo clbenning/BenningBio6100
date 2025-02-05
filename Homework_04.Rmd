@@ -44,17 +44,17 @@ print(vec_a)
 [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1
 
 ### Question 2b
-
+```{r}
 vec_b <- c(seq(1:5))
 
 vec_b <- rep(x = vec_b, times = vec_b)
 
 print(vec_b)
+```
 
-[1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5
 
 ### Question 2c 
-
+```{r}
 vec_c1 <- c(seq(1:5))
 
 vec_c2 <- c(seq(5,1))
@@ -62,23 +62,19 @@ vec_c2 <- c(seq(5,1))
 vec_c <- rep(x = vec_c2, times = vec_c1)
 
 print(vec_c)
-
-[1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1
-
+```
 
 ## Question 3 
-
+```{r}
 coord <- runif(2)
 
 print(coord)
-
-[1] 0.6778340 0.3549398
-
+```
+```{r}
 polar_coord <- c(sqrt(coord[1]^2+coord[2]^2),atan(coord[2]/coord[1]))
 
 print(polar_coord)
-
-[1] 0.7651413 0.4823789
+```
 
 ## Question 4
 ```{r}
