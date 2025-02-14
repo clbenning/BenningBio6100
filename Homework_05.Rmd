@@ -1,0 +1,113 @@
+---
+title: "Homework_05"
+author: "clbenning"
+date: "2025-02-14"
+output: html_document
+---
+
+## Question 1 
+
+```{r}
+
+set.seed(12)
+# Create a vector of consecutive integers from 1-n_dims^2. 
+
+n_dims <- sample(3:10, 1)
+n_dims
+
+my_vec <- 1:(n_dims^2)
+my_vec
+
+# Use the sample function to randomly reshuffle these values, create a square matrix, and print it. 
+
+my_vec_remix <- sample(my_vec)
+my_vec_remix
+
+my_square <- matrix(my_vec_remix, nrow = 4)
+print(my_square)
+
+# Transpose the matrix 
+
+transpose <- t(my_square)
+print(transpose)
+
+# Calculate the sum and means of the elements in the first and last row of transposed matrix
+
+sum(transpose[1,])
+mean(transpose[1,])
+
+sum(transpose[3,])
+mean(transpose[3,])
+
+# Special decomposition of a matrix using the "eigen" function (typed "?eigen" into the console)
+
+decomp_matrix <- eigen(transpose)
+decomp_matrix
+
+typeof(decomp_matrix)
+```
+
+## Question 2
+
+```{r}
+# Create a 4x4 matrix with random uniform values 
+
+my_matrix <- matrix(data = runif(16), nrow = 4)
+my_matrix
+
+# Produce a vector of 100 boolean values 
+my_logical <- runif(100, 0, 1)
+my_logical <- my_logical < 0.5
+my_logical
+
+# Create a 26 element vector of letters 
+my_letters <- letters
+my_letters
+
+# Create a new list combining the matrix, logical vector, and letters
+my_list <- list(my_matrix[2,2], my_logical[2], my_letters[2])
+my_list
+
+typeof(my_list[1]) 
+typeof(my_list[2])  
+typeof(my_list[3]) 
+
+my_list <- c(my_list)
+my_list
+typeof(my_list[1]) # Still a list
+
+my_list_2 <- c(my_matrix[2,2], my_logical[2], my_letters[2])
+
+typeof(my_list_2[1]) 
+typeof(my_list_2[2])  
+typeof(my_list_2[3]) 
+
+```
+
+## Question 3
+
+```{r}
+# Create a data frame with 26 random uniform values from 0 to 10 and another with 26 randomly ordered capital letters
+
+my_unis <- runif(0:10, size = 26, replace = TRUE)
+my_letters <- sample(LETTERS)
+
+dat <- data.frame(my_unis, my_letters)
+dat
+dat[sample(1:nrow(dat),size=4),1] = NA
+dat
+
+# Find the values with missing values 
+
+which(is.na(dat))
+
+# Reorder the data according to alphabetical order using the second variable 
+
+dat <- dat[order(dat$my_letters),]
+dat
+
+dat[complete.cases(dat$my_unis), 1]
+mean(dat$my_unis, na.rm = TRUE)
+
+```
+
