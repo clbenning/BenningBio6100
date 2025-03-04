@@ -89,7 +89,7 @@ typeof(my_list_2[3])
 ```{r}
 # Create a data frame with 26 random uniform values from 0 to 10 and another with 26 randomly ordered capital letters
 
-my_unis <- runif(0:10, size = 26, replace = TRUE)
+my_unis <- runif(26, min = 0, max = 10)
 my_letters <- sample(LETTERS)
 
 dat <- data.frame(my_unis, my_letters)

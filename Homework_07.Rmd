@@ -1,0 +1,61 @@
+---
+title: "Homework_07"
+author: "clbenning"
+date: "2025-03-04"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+```{r}
+data("iris")
+structure(iris)
+
+iris1 <- iris %>%
+  group_by(Species) %>%
+  filter(Sepal.Length > 6,
+         Sepal.Width > 2.5)
+
+iris2 <- select(iris1, c("Species", "Sepal.Length", "Sepal.Width"))
+
+iris3 <- iris2 %>%
+  arrange(desc("Sepal.Length"))
+
+head(iris3)
+
+iris4 <- iris3 %>%
+  mutate(Sepal.Area = Sepal.Length * Sepal.Width)
+
+structure(iris4)
+
+iris5 <- data.frame(average.sepal.length = mean(iris4$Sepal.Length),
+          average.sepal.width = mean(iris4$Sepal.Width), 
+          sample.size = nrow(iris4)) 
+print(iris5)
+
+iris6 <- iris4 %>%
+  group_by(Species) %>%
+  summarise(average.sepal.length = mean(iris4$Sepal.Length),
+          average.sepal.width = mean(iris4$Sepal.Width), 
+          sample.size = n())
+print(iris6)
+```
+
+```{r}
+iris_master <- iris %>%
+  select(Species, Sepal.Length, Sepal.Width) %>%
+  group_by(Species) %>%
+  filter(Sepal.Length > 6,
+         Sepal.Width > 2.5) %>%
+   arrange(desc(Sepal.Length)) %>%
+  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %>%
+  summarise(average.sepal.length = mean(Sepal.Length),
+          average.sepal.width = mean(Sepal.Width), 
+          sample.size = n())
+
+print(iris_master)
+```
+

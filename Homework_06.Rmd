@@ -1,0 +1,80 @@
+---
+title: "Homework_06"
+author: "clbenning"
+date: "2025-02-19"
+output: html_document
+---
+
+# Creating Fake Data Sets To Explore Hypotheses
+
+#### In an experiment looking at the effects of applying fertilizer to a corn field, the null hypothesis would be: Nitrogen treated plots will have the same corn yields as plots that did not receive fertilizer. The alternative hypothesis would be: Plots receiving nitrogen fertilizer will have a different yield than unfertilized plots. 
+
+#### Mean corn yields will be 20 tons/acre with a standard deviation of 2.
+
+## Generate random data set
+
+```{r}
+dat <- rnorm(100, mean = 20, sd = 2)
+
+dat <- data.frame(dat)
+
+dat$Fert <- sample(c("Fertilized", "Unfertilized"))
+
+colnames(dat) <- c("Yield", "Fert")
+
+dat
+```
+## Run an ANOVA and test the hypothesis 
+
+#### p-value is 0.059 which shows that there not quite enough evidence to reject the null hypothesis. 
+
+```{r}
+mod <- lm(Yield ~ Fert, data = dat)
+anova(mod)
+```
+```{r}
+library(ggplot2)
+library(Rmisc)
+library(multcompView)
+dat_sum <- summarySE(dat, measurevar = "Yield", groupvars = "Fert", na.rm = TRUE)
+  
+dat_plot <- ggplot(dat_sum, aes(y = Yield, x = Fert, fill = Fert)) +
+  geom_bar(position = "dodge", stat="identity") +
+  geom_errorbar(aes(ymin = Yield-se, ymax = Yield+se), width = .2, position = position_dodge(.9)) +
+  scale_fill_manual(values=c("cornflowerblue", "darkgoldenrod1"))+
+  scale_y_continuous(limits=c(0,25)) +
+  theme_bw()+
+  theme(text = element_text(size = 20)) + 
+  theme(legend.position = "right", strip.background = element_rect(colour="black", fill="white")) +
+  theme(axis.text.x = element_text(vjust = 0.5, hjust=.5, size = 15)) + 
+  labs(x="Treatment", y="Yield tons " ~ac^-1) +
+  labs(title="Corn Yields") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dat_plot
+```
+
+## For Loops to adjust sample size 
+
+#### There is no sample size change between 10 and 200 that creates a significant effect.
+```{r}
+results <- data.frame(sample_size = integer(),
+                       treatment = character(),
+                       p_value = numeric())
+
+treatments = c("Fertilized", "Unfertilized")
+
+for (i in seq(10, 200, by = 5)) {  # Increase sample size by 5
+
+  temp_dat <- dat[sample(1:nrow(dat), i, replace = TRUE), ]
+
+  mod <- lm(Yield ~ Fert, data = temp_dat)
+  
+    p_value <- summary(mod)$coefficients[2] 
+
+    results <- rbind(results, data.frame(sample_size = i, treatment = treatments, 
+                                         p_value = p_value))
+  }
+```
+
+
