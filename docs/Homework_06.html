@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="clbenning" />
+
+<meta name="date" content="2025-02-19" />
+
+<title>Homework_06</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="homework_links.html">Weekly Homeworks</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework_06</h1>
+<h4 class="author">clbenning</h4>
+<h4 class="date">2025-02-19</h4>
+
+</div>
+
+
+<div id="creating-fake-data-sets-to-explore-hypotheses"
+class="section level1">
+<h1>Creating Fake Data Sets To Explore Hypotheses</h1>
+<div
+id="in-an-experiment-looking-at-the-effects-of-applying-fertilizer-to-a-corn-field-the-null-hypothesis-would-be-nitrogen-treated-plots-will-have-the-same-corn-yields-as-plots-that-did-not-receive-fertilizer.-the-alternative-hypothesis-would-be-plots-receiving-nitrogen-fertilizer-will-have-a-different-yield-than-unfertilized-plots."
+class="section level4">
+<h4>In an experiment looking at the effects of applying fertilizer to a
+corn field, the null hypothesis would be: Nitrogen treated plots will
+have the same corn yields as plots that did not receive fertilizer. The
+alternative hypothesis would be: Plots receiving nitrogen fertilizer
+will have a different yield than unfertilized plots.</h4>
+</div>
+<div
+id="mean-corn-yields-will-be-20-tonsacre-with-a-standard-deviation-of-2."
+class="section level4">
+<h4>Mean corn yields will be 20 tons/acre with a standard deviation of
+2.</h4>
+</div>
+<div id="generate-random-data-set" class="section level2">
+<h2>Generate random data set</h2>
+<pre class="r"><code>dat &lt;- rnorm(100, mean = 20, sd = 2)
+
+dat &lt;- data.frame(dat)
+
+dat$Fert &lt;- sample(c(&quot;Fertilized&quot;, &quot;Unfertilized&quot;))
+
+colnames(dat) &lt;- c(&quot;Yield&quot;, &quot;Fert&quot;)
+
+dat</code></pre>
+<pre><code>##        Yield         Fert
+## 1   23.60105   Fertilized
+## 2   18.89708 Unfertilized
+## 3   20.21412   Fertilized
+## 4   21.57825 Unfertilized
+## 5   19.51149   Fertilized
+## 6   20.76836 Unfertilized
+## 7   17.66153   Fertilized
+## 8   23.03654 Unfertilized
+## 9   20.14596   Fertilized
+## 10  18.94465 Unfertilized
+## 11  18.95095   Fertilized
+## 12  21.49380 Unfertilized
+## 13  17.63517   Fertilized
+## 14  17.29058 Unfertilized
+## 15  19.57543   Fertilized
+## 16  19.82104 Unfertilized
+## 17  20.51407   Fertilized
+## 18  22.40857 Unfertilized
+## 19  19.65194   Fertilized
+## 20  21.38043 Unfertilized
+## 21  20.82677   Fertilized
+## 22  17.13904 Unfertilized
+## 23  17.40066   Fertilized
+## 24  22.80670 Unfertilized
+## 25  19.56130   Fertilized
+## 26  24.26498 Unfertilized
+## 27  16.33306   Fertilized
+## 28  19.77898 Unfertilized
+## 29  21.53142   Fertilized
+## 30  20.64701 Unfertilized
+## 31  18.52924   Fertilized
+## 32  22.29143 Unfertilized
+## 33  19.44353   Fertilized
+## 34  22.11368 Unfertilized
+## 35  20.73503   Fertilized
+## 36  21.69503 Unfertilized
+## 37  17.47436   Fertilized
+## 38  21.05647 Unfertilized
+## 39  22.17881   Fertilized
+## 40  18.60104 Unfertilized
+## 41  22.84205   Fertilized
+## 42  22.87804 Unfertilized
+## 43  17.40938   Fertilized
+## 44  18.20588 Unfertilized
+## 45  16.23045   Fertilized
+## 46  20.05500 Unfertilized
+## 47  18.18517   Fertilized
+## 48  16.70488 Unfertilized
+## 49  20.50468   Fertilized
+## 50  21.28463 Unfertilized
+## 51  19.30613   Fertilized
+## 52  18.96947 Unfertilized
+## 53  20.79634   Fertilized
+## 54  21.90711 Unfertilized
+## 55  20.52036   Fertilized
+## 56  15.89973 Unfertilized
+## 57  20.57594   Fertilized
+## 58  20.72389 Unfertilized
+## 59  16.62652   Fertilized
+## 60  22.49434 Unfertilized
+## 61  16.45961   Fertilized
+## 62  20.44567 Unfertilized
+## 63  18.87896   Fertilized
+## 64  18.98374 Unfertilized
+## 65  18.12233   Fertilized
+## 66  23.27130 Unfertilized
+## 67  18.69437   Fertilized
+## 68  21.67843 Unfertilized
+## 69  18.77681   Fertilized
+## 70  19.25657 Unfertilized
+## 71  18.96953   Fertilized
+## 72  19.31646 Unfertilized
+## 73  21.36784   Fertilized
+## 74  21.59668 Unfertilized
+## 75  18.40039   Fertilized
+## 76  20.45926 Unfertilized
+## 77  23.38710   Fertilized
+## 78  18.46306 Unfertilized
+## 79  16.91369   Fertilized
+## 80  17.35880 Unfertilized
+## 81  18.64836   Fertilized
+## 82  19.26599 Unfertilized
+## 83  18.97226   Fertilized
+## 84  18.08149 Unfertilized
+## 85  19.75667   Fertilized
+## 86  21.33187 Unfertilized
+## 87  22.47744   Fertilized
+## 88  22.36788 Unfertilized
+## 89  22.99672   Fertilized
+## 90  19.42179 Unfertilized
+## 91  23.84737   Fertilized
+## 92  21.03702 Unfertilized
+## 93  20.95318   Fertilized
+## 94  20.60521 Unfertilized
+## 95  21.64247   Fertilized
+## 96  20.78516 Unfertilized
+## 97  17.11910   Fertilized
+## 98  18.26221 Unfertilized
+## 99  14.02709   Fertilized
+## 100 19.89891 Unfertilized</code></pre>
+</div>
+<div id="run-an-anova-and-test-the-hypothesis" class="section level2">
+<h2>Run an ANOVA and test the hypothesis</h2>
+<div
+id="p-value-is-0.059-which-shows-that-there-not-quite-enough-evidence-to-reject-the-null-hypothesis."
+class="section level4">
+<h4>p-value is 0.059 which shows that there not quite enough evidence to
+reject the null hypothesis.</h4>
+<pre class="r"><code>mod &lt;- lm(Yield ~ Fert, data = dat)
+anova(mod)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Yield
+##           Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Fert       1  17.76 17.7578  4.3754 0.03905 *
+## Residuals 98 397.74  4.0585                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.4.2</code></pre>
+<pre class="r"><code>library(Rmisc)</code></pre>
+<pre><code>## Warning: package &#39;Rmisc&#39; was built under R version 4.4.2</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: plyr</code></pre>
+<pre><code>## Warning: package &#39;plyr&#39; was built under R version 4.4.2</code></pre>
+<pre class="r"><code>library(multcompView)</code></pre>
+<pre><code>## Warning: package &#39;multcompView&#39; was built under R version 4.4.2</code></pre>
+<pre class="r"><code>dat_sum &lt;- summarySE(dat, measurevar = &quot;Yield&quot;, groupvars = &quot;Fert&quot;, na.rm = TRUE)
+  
+dat_plot &lt;- ggplot(dat_sum, aes(y = Yield, x = Fert, fill = Fert)) +
+  geom_bar(position = &quot;dodge&quot;, stat=&quot;identity&quot;) +
+  geom_errorbar(aes(ymin = Yield-se, ymax = Yield+se), width = .2, position = position_dodge(.9)) +
+  scale_fill_manual(values=c(&quot;cornflowerblue&quot;, &quot;darkgoldenrod1&quot;))+
+  scale_y_continuous(limits=c(0,25)) +
+  theme_bw()+
+  theme(text = element_text(size = 20)) + 
+  theme(legend.position = &quot;right&quot;, strip.background = element_rect(colour=&quot;black&quot;, fill=&quot;white&quot;)) +
+  theme(axis.text.x = element_text(vjust = 0.5, hjust=.5, size = 15)) + 
+  labs(x=&quot;Treatment&quot;, y=&quot;Yield tons &quot; ~ac^-1) +
+  labs(title=&quot;Corn Yields&quot;) +
+  theme(plot.title = element_text(hjust = 0.5))
+
+dat_plot</code></pre>
+<p><img src="Homework_06_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+</div>
+<div id="for-loops-to-adjust-sample-size" class="section level2">
+<h2>For Loops to adjust sample size</h2>
+<div
+id="there-is-no-sample-size-change-between-10-and-200-that-creates-a-significant-effect."
+class="section level4">
+<h4>There is no sample size change between 10 and 200 that creates a
+significant effect.</h4>
+<pre class="r"><code>results &lt;- data.frame(sample_size = integer(),
+                       treatment = character(),
+                       p_value = numeric())
+
+treatments = c(&quot;Fertilized&quot;, &quot;Unfertilized&quot;)
+
+for (i in seq(10, 200, by = 5)) {  # Increase sample size by 5
+
+  temp_dat &lt;- dat[sample(1:nrow(dat), i, replace = TRUE), ]
+
+  mod &lt;- lm(Yield ~ Fert, data = temp_dat)
+  
+    p_value &lt;- summary(mod)$coefficients[2] 
+
+    results &lt;- rbind(results, data.frame(sample_size = i, treatment = treatments, 
+                                         p_value = p_value))
+  }</code></pre>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

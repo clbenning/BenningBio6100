@@ -304,7 +304,7 @@ print(transpose)</code></pre>
 ## [2,]   13    2    8   14
 ## [3,]   12    9    1    4
 ## [4,]   15   16    6    3</code></pre>
-<pre class="r"><code># Calculate the sum and means of the elements in the first and last rows 
+<pre class="r"><code># Calculate the sum and means of the elements in the first and last row of transposed matrix
 
 sum(transpose[1,])</code></pre>
 <pre><code>## [1] 33</code></pre>
@@ -314,8 +314,197 @@ sum(transpose[1,])</code></pre>
 <pre><code>## [1] 26</code></pre>
 <pre class="r"><code>mean(transpose[3,])</code></pre>
 <pre><code>## [1] 6.5</code></pre>
-<pre class="r"><code># Special decomposition of a matrix using the &quot;eigen&quot; function (typed &quot;?eigen&quot; into the console)</code></pre>
-<pre class="r"><code># Calculate the</code></pre>
+<pre class="r"><code># Special decomposition of a matrix using the &quot;eigen&quot; function (typed &quot;?eigen&quot; into the console)
+
+decomp_matrix &lt;- eigen(transpose)
+decomp_matrix</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1]  33.805563 -13.183933  -5.678906   1.057276
+## 
+## $vectors
+##            [,1]        [,2]        [,3]       [,4]
+## [1,] -0.4620340 -0.08639279 -0.63951602 -0.5964205
+## [2,] -0.5433435 -0.68925887  0.33069174  0.5334069
+## [3,] -0.3891537  0.33021474  0.69383497 -0.1215456
+## [4,] -0.5829768  0.63907490  0.01597698  0.5873554</code></pre>
+<pre class="r"><code>typeof(decomp_matrix)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2</h2>
+<pre class="r"><code># Create a 4x4 matrix with random uniform values 
+
+my_matrix &lt;- matrix(data = runif(16), nrow = 4)
+my_matrix</code></pre>
+<pre><code>##            [,1]      [,2]      [,3]      [,4]
+## [1,] 0.09785304 0.5047680 0.2408832 0.6332646
+## [2,] 0.70983047 0.1885869 0.8932649 0.9410875
+## [3,] 0.21782304 0.4394293 0.8827564 0.6939114
+## [4,] 0.26794359 0.6698193 0.8140633 0.8437022</code></pre>
+<pre class="r"><code># Produce a vector of 100 boolean values 
+my_logical &lt;- runif(100, 0, 1)
+my_logical &lt;- my_logical &lt; 0.5
+my_logical</code></pre>
+<pre><code>##   [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [13]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [25] FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE
+##  [37]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
+##  [49]  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE
+##  [61]  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+##  [73] FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+##  [97]  TRUE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code># Create a 26 element vector of letters 
+my_letters &lt;- letters
+my_letters</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<pre class="r"><code># Create a new list combining the matrix, logical vector, and letters
+my_list &lt;- list(my_matrix[2,2], my_logical[2], my_letters[2])
+my_list</code></pre>
+<pre><code>## [[1]]
+## [1] 0.1885869
+## 
+## [[2]]
+## [1] TRUE
+## 
+## [[3]]
+## [1] &quot;b&quot;</code></pre>
+<pre class="r"><code>typeof(my_list[1]) </code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>typeof(my_list[2])  </code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>typeof(my_list[3]) </code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>my_list &lt;- c(my_list)
+my_list</code></pre>
+<pre><code>## [[1]]
+## [1] 0.1885869
+## 
+## [[2]]
+## [1] TRUE
+## 
+## [[3]]
+## [1] &quot;b&quot;</code></pre>
+<pre class="r"><code>typeof(my_list[1]) # Still a list</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>my_list_2 &lt;- c(my_matrix[2,2], my_logical[2], my_letters[2])
+
+typeof(my_list_2[1]) </code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>typeof(my_list_2[2])  </code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>typeof(my_list_2[3]) </code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3</h2>
+<pre class="r"><code># Create a data frame with 26 random uniform values from 0 to 10 and another with 26 randomly ordered capital letters
+
+my_unis &lt;- runif(26, min = 0, max = 10)
+my_letters &lt;- sample(LETTERS)
+
+dat &lt;- data.frame(my_unis, my_letters)
+dat</code></pre>
+<pre><code>##      my_unis my_letters
+## 1  8.7390817          E
+## 2  5.9467854          Y
+## 3  2.9965236          P
+## 4  8.4011628          L
+## 5  5.9883009          B
+## 6  7.1031208          H
+## 7  3.3381367          A
+## 8  5.8215147          K
+## 9  4.2758748          M
+## 10 8.6829426          O
+## 11 4.5885828          Q
+## 12 4.2597642          C
+## 13 2.6309321          T
+## 14 7.9018964          G
+## 15 1.0185476          N
+## 16 0.8347121          S
+## 17 3.5050761          X
+## 18 6.9962838          R
+## 19 6.9733668          U
+## 20 0.6649924          V
+## 21 4.2937384          F
+## 22 2.5003389          Z
+## 23 5.0169870          I
+## 24 5.2981234          J
+## 25 1.0132115          W
+## 26 3.6711480          D</code></pre>
+<pre class="r"><code>dat[sample(1:nrow(dat),size=4),1] = NA
+dat</code></pre>
+<pre><code>##      my_unis my_letters
+## 1         NA          E
+## 2  5.9467854          Y
+## 3  2.9965236          P
+## 4  8.4011628          L
+## 5  5.9883009          B
+## 6  7.1031208          H
+## 7  3.3381367          A
+## 8  5.8215147          K
+## 9  4.2758748          M
+## 10 8.6829426          O
+## 11 4.5885828          Q
+## 12 4.2597642          C
+## 13 2.6309321          T
+## 14 7.9018964          G
+## 15 1.0185476          N
+## 16 0.8347121          S
+## 17 3.5050761          X
+## 18 6.9962838          R
+## 19 6.9733668          U
+## 20 0.6649924          V
+## 21        NA          F
+## 22 2.5003389          Z
+## 23        NA          I
+## 24 5.2981234          J
+## 25        NA          W
+## 26 3.6711480          D</code></pre>
+<pre class="r"><code># Find the values with missing values 
+
+which(is.na(dat))</code></pre>
+<pre><code>## [1]  1 21 23 25</code></pre>
+<pre class="r"><code># Reorder the data according to alphabetical order using the second variable 
+
+dat &lt;- dat[order(dat$my_letters),]
+dat</code></pre>
+<pre><code>##      my_unis my_letters
+## 7  3.3381367          A
+## 5  5.9883009          B
+## 12 4.2597642          C
+## 26 3.6711480          D
+## 1         NA          E
+## 21        NA          F
+## 14 7.9018964          G
+## 6  7.1031208          H
+## 23        NA          I
+## 24 5.2981234          J
+## 8  5.8215147          K
+## 4  8.4011628          L
+## 9  4.2758748          M
+## 15 1.0185476          N
+## 10 8.6829426          O
+## 3  2.9965236          P
+## 11 4.5885828          Q
+## 18 6.9962838          R
+## 16 0.8347121          S
+## 13 2.6309321          T
+## 19 6.9733668          U
+## 20 0.6649924          V
+## 25        NA          W
+## 17 3.5050761          X
+## 2  5.9467854          Y
+## 22 2.5003389          Z</code></pre>
+<pre class="r"><code>dat[complete.cases(dat$my_unis), 1]</code></pre>
+<pre><code>##  [1] 3.3381367 5.9883009 4.2597642 3.6711480 7.9018964 7.1031208 5.2981234
+##  [8] 5.8215147 8.4011628 4.2758748 1.0185476 8.6829426 2.9965236 4.5885828
+## [15] 6.9962838 0.8347121 2.6309321 6.9733668 0.6649924 3.5050761 5.9467854
+## [22] 2.5003389</code></pre>
+<pre class="r"><code>mean(dat$my_unis, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 4.699915</code></pre>
 </div>
 
 
