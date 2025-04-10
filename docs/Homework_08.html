@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="clbenning" />
+
+<meta name="date" content="2025-03-24" />
+
+<title>Homework_08</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="homework_links.html">Weekly Homeworks</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework_08</h1>
+<h4 class="author">clbenning</h4>
+<h4 class="date">2025-03-24</h4>
+
+</div>
+
+
+<div id="question-1-working-with-fake-data--" class="section level1">
+<h1>Question 1: Working with fake data —-</h1>
+<pre class="r"><code>library(ggplot2)
+library(MASS)</code></pre>
+<pre><code>## Warning: package &#39;MASS&#39; was built under R version 4.4.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div id="read-in-a-data-vector" class="section level3">
+<h3>Read in a data vector</h3>
+</div>
+</div>
+<div
+id="r-z---rnormn3000mean0.2-z---data.frame13000z-namesz---listidmyvar-z---zzmyvar0-strz-summaryzmyvar"
+class="section level1">
+<h1><code>{r} # z &lt;- rnorm(n=3000,mean=0.2) # z &lt;- data.frame(1:3000,z) # names(z) &lt;- list("ID","myVar") # z &lt;- z[z$myVar&gt;0,] # str(z) # summary(z$myVar) #</code></h1>
+</div>
+<div id="plot-a-histogram-of-fake-data" class="section level1">
+<h1>#### Plot a histogram of fake data</h1>
+</div>
+<div id="section" class="section level1">
+<h1></h1>
+</div>
+<div
+id="r-p1---ggplotdataz-aesxmyvar-y..density..-geom_histogramcolorblackfilldarkgoldenrod2size0.2-printp1-add-empiracal-density-curve-r"
+class="section level1">
+<h1><code>{r} # p1 &lt;- ggplot(data=z, aes(x=myVar, y=..density..)) + #   geom_histogram(color="black",fill="darkgoldenrod2",size=0.2)  # print(p1) # ```` #  # #### Add empiracal density curve  #</code>{r}</h1>
+</div>
+<div id="p1---p1-geom_densitylinetypedottedsize0.75"
+class="section level1">
+<h1>p1 &lt;- p1 + geom_density(linetype=“dotted”,size=0.75)</h1>
+</div>
+<div id="printp1" class="section level1">
+<h1>print(p1)</h1>
+</div>
+<div id="get-the-maximum-liklihood-parameters-for-normal-distribution-r"
+class="section level1">
+<h1><code>#  # #### Get the maximum liklihood parameters for normal distribution  #  #</code>{r}</h1>
+</div>
+<div
+id="normpars---fitdistrzmyvarnormal-printnormpars-strnormpars-normparsestimatemean"
+class="section level1">
+<h1>normPars &lt;- fitdistr(z<span
+class="math inline">\(myVar,&quot;normal&quot;)
+# print(normPars)
+# str(normPars)
+# normPars\)</span>estimate[“mean”]</h1>
+</div>
+<div id="plot-the-normal-probability-density-on-the-histogram-r"
+class="section level1">
+<h1><code>#  # #### Plot the normal probability density on the histogram  #  #</code>{r}</h1>
+</div>
+<div id="meanml---normparsestimatemean-sdml---normparsestimatesd"
+class="section level1">
+<h1>meanML &lt;- normPars<span
+class="math inline">\(estimate[&quot;mean&quot;]
+# sdML &lt;- normPars\)</span>estimate[“sd”]</h1>
+</div>
+<div id="section-1" class="section level1">
+<h1></h1>
+</div>
+<div id="xval---seq0maxzmyvarlenlengthzmyvar" class="section level1">
+<h1>xval &lt;- seq(0,max(z<span
+class="math inline">\(myVar),len=length(z\)</span>myVar))</h1>
+</div>
+<div id="section-2" class="section level1">
+<h1></h1>
+</div>
+<div
+id="stat---stat_functionaesx-xval-y-..y..-fun-dnorm-colourred-n-lengthzmyvar-args-listmean-meanml-sd-sdml-p1-stat-add-the-exponential-uniform-gamma-and-beta-probability-density-curves-r-expopars---fitdistrzmyvarexponential"
+class="section level1">
+<h1>stat &lt;- stat_function(aes(x = xval, y = ..y..), fun = dnorm,
+colour=“red”, n = length(z<span class="math inline">\(myVar), args =
+list(mean = meanML, sd = sdML))
+#  p1 + stat
+# ```
+#
+# #### Add the exponential, uniform, gamma, and beta probability density
+curves
+#
+# ```{r}
+# expoPars &lt;- fitdistr(z\)</span>myVar,“exponential”)</h1>
+</div>
+<div
+id="rateml---expoparsestimaterate-stat2---stat_functionaesx-xval-y-..y..-fun-dexp-colourblue-n-lengthzmyvar-args-listraterateml"
+class="section level1">
+<h1>rateML &lt;- expoPars<span
+class="math inline">\(estimate[&quot;rate&quot;]
+#
+# stat2 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dexp,
+colour=&quot;blue&quot;, n = length(z\)</span>myVar), args =
+list(rate=rateML))</h1>
+</div>
+<div id="p1-stat-stat2" class="section level1">
+<h1>p1 + stat + stat2</h1>
+</div>
+<div id="r" class="section level1">
+<h1><code>#  #</code>{r}</h1>
+</div>
+<div
+id="stat3---stat_functionaesx-xval-y-..y..-fun-dunif-colourdarkgreen-n-lengthzmyvar-args-listminminzmyvar-maxmaxzmyvar-p1-stat-stat2-stat3-r-gammapars---fitdistrzmyvargamma"
+class="section level1">
+<h1>stat3 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dunif,
+colour=“darkgreen”, n = length(z<span class="math inline">\(myVar), args
+= list(min=min(z\)</span>myVar), max=max(z<span
+class="math inline">\(myVar)))
+# p1 + stat + stat2 + stat3
+# ```
+#
+# ```{r}
+# gammaPars &lt;- fitdistr(z\)</span>myVar,“gamma”)</h1>
+</div>
+<div
+id="shapeml---gammaparsestimateshape-rateml---gammaparsestimaterate"
+class="section level1">
+<h1>shapeML &lt;- gammaPars<span
+class="math inline">\(estimate[&quot;shape&quot;]
+# rateML &lt;- gammaPars\)</span>estimate[“rate”]</h1>
+</div>
+<div id="section-3" class="section level1">
+<h1></h1>
+</div>
+<div
+id="stat4---stat_functionaesx-xval-y-..y..-fun-dgamma-colourbrown-n-lengthzmyvar-args-listshapeshapeml-raterateml-p1-stat-stat2-stat3-stat4-r-pspecial---ggplotdataz-aesxmyvarmaxmyvar-0.1-y..density..-geom_histogramcolorgrey60fillcornsilksize0.2-xlimc01-geom_densitysize0.75linetypedotted-betapars---fitdistrxzmyvarmaxzmyvar-0.1startlistshape11shape22beta-shape1ml---betaparsestimateshape1"
+class="section level1">
+<h1>stat4 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dgamma,
+colour=“brown”, n = length(z<span class="math inline">\(myVar), args =
+list(shape=shapeML, rate=rateML))
+#  p1 + stat + stat2 + stat3 + stat4
+# ```
+#
+# ```{r}
+# pSpecial &lt;- ggplot(data=z, aes(x=myVar/(max(myVar + 0.1)),
+y=..density..)) +
+#   geom_histogram(color=&quot;grey60&quot;,fill=&quot;cornsilk&quot;,size=0.2)
++
+#   xlim(c(0,1)) +
+#   geom_density(size=0.75,linetype=&quot;dotted&quot;)
+#
+# betaPars &lt;- fitdistr(x=z\)</span>myVar/max(z<span
+class="math inline">\(myVar +
+0.1),start=list(shape1=1,shape2=2),&quot;beta&quot;)
+# shape1ML &lt;- betaPars\)</span>estimate[“shape1”]</h1>
+</div>
+<div
+id="shape2ml---betaparsestimateshape2-statspecial---stat_functionaesx-xval-y-..y..-fun-dbeta-colourorchid-n-lengthzmyvar-args-listshape1shape1mlshape2shape2ml"
+class="section level1">
+<h1>shape2ML &lt;- betaPars<span
+class="math inline">\(estimate[&quot;shape2&quot;]
+#
+# statSpecial &lt;- stat_function(aes(x = xval, y = ..y..), fun = dbeta,
+colour=&quot;orchid&quot;, n = length(z\)</span>myVar), args =
+list(shape1=shape1ML,shape2=shape2ML))</h1>
+</div>
+<div id="pspecial-statspecial" class="section level1">
+<h1>pSpecial + statSpecial</h1>
+</div>
+<div id="section-4" class="section level1">
+<h1>```</h1>
+</div>
+<div id="question-2-rye-data--" class="section level1">
+<h1>Question 2: Rye Data —-</h1>
+<div
+id="this-data-is-a-compilation-of-performance-metrics-agronomic-practices-and-soil-properties-across-the-eastern-half-of-the-united-states.-the-dataset-includes-a-total-of-5695-cereal-rye-biomass-observations-across-208-site-years-between-20012022-and-encompasses-a-wide-range-of-agronomic-soil-and-climate-conditions."
+class="section level2">
+<h2>This data is a compilation of performance metrics, agronomic
+practices, and soil properties across the eastern half of the United
+States. The dataset includes a total of 5,695 cereal rye biomass
+observations across 208 site-years between 2001–2022 and encompasses a
+wide range of agronomic, soil, and climate conditions.</h2>
+<div id="read-in-data-set" class="section level4">
+<h4>Read in data set</h4>
+<pre class="r"><code>library(readr)
+ryedat &lt;- read_csv(&quot;rye_data.csv&quot;)</code></pre>
+<pre><code>## Rows: 5695 Columns: 27
+## ── Column specification ──────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (12): site_id, year, rye_planting_date, rye_sampling_date, cultivar, rep...
+## dbl (15): study_id, N_rate_fall_kg_N_ha, N_rate_spring_kg_N_ha, shoot_biomas...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>View(ryedat)
+
+ryedat$study_id &lt;- as.factor(ryedat$study_id)
+ryedat$site_id &lt;- as.factor(ryedat$site_id)</code></pre>
+</div>
+</div>
+</div>
+<div id="plot-histogram-of-rye-data" class="section level1">
+<h1>Plot histogram of rye data</h1>
+<pre class="r"><code>plot &lt;- ggplot(data = ryedat, aes(x =  shoot_biomass_mean_kg_ha, y = ..density..)) +
+  geom_histogram(color=&quot;black&quot;,fill=&quot;aquamarine3&quot;,size=0.2) +
+  theme_classic()</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in
+## ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where
+## this warning was generated.</code></pre>
+<pre class="r"><code>plot</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in
+## ggplot2 3.4.0.
+## ℹ Please use `after_stat(density)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where
+## this warning was generated.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="Homework_08_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="emipirical-density-curce" class="section level1">
+<h1>Emipirical Density Curce</h1>
+<pre class="r"><code>plot &lt;- plot + geom_density(linetype=&quot;dotted&quot;,size = 2)
+plot</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="Homework_08_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="maximum-liklihood-parameters-for-normal"
+class="section level1">
+<h1>Maximum Liklihood Parameters for Normal</h1>
+<pre class="r"><code>normPars &lt;- fitdistr(ryedat$shoot_biomass_mean_kg_ha, &quot;normal&quot;)
+print(normPars)</code></pre>
+<pre><code>##       mean          sd    
+##   3428.26191   3163.35061 
+##  (  41.91799) (  29.64050)</code></pre>
+<pre class="r"><code>str(normPars)</code></pre>
+<pre><code>## List of 5
+##  $ estimate: Named num [1:2] 3428 3163
+##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mean&quot; &quot;sd&quot;
+##  $ sd      : Named num [1:2] 41.9 29.6
+##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mean&quot; &quot;sd&quot;
+##  $ vcov    : num [1:2, 1:2] 1757 0 0 879
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:2] &quot;mean&quot; &quot;sd&quot;
+##   .. ..$ : chr [1:2] &quot;mean&quot; &quot;sd&quot;
+##  $ n       : int 5695
+##  $ loglik  : num -53979
+##  - attr(*, &quot;class&quot;)= chr &quot;fitdistr&quot;</code></pre>
+<pre class="r"><code>normPars$estimate[&quot;mean&quot;]</code></pre>
+<pre><code>##     mean 
+## 3428.262</code></pre>
+<p>#Normal Distribution</p>
+<pre class="r"><code>meanML &lt;- normPars$estimate[&quot;mean&quot;]
+sdML &lt;- normPars$estimate[&quot;sd&quot;]
+
+xval &lt;- seq(0,max(ryedat$shoot_biomass_mean_kg_ha),len=length(ryedat$shoot_biomass_mean_kg_ha))
+
+stat &lt;- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour=&quot;red&quot;, n = length(ryedat$shoot_biomass_mean_kg_ha), args = list(mean = meanML, sd = sdML))
+
+plot + stat</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="Homework_08_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="exponential-probability-density" class="section level1">
+<h1>Exponential Probability Density</h1>
+<pre class="r"><code>expoPars &lt;- fitdistr(ryedat$shoot_biomass_mean_kg_ha,&quot;exponential&quot;)
+rateML &lt;- expoPars$estimate[&quot;rate&quot;]
+
+stat2 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour=&quot;blue&quot;, n = length(ryedat$shoot_biomass_mean_kg_ha), args = list(rate=rateML))
+
+plot + stat + stat2</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="Homework_08_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="uniform-probability-density" class="section level1">
+<h1>Uniform Probability Density</h1>
+<pre class="r"><code>stat3 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour=&quot;darkgreen&quot;, n = length(ryedat$shoot_biomass_mean_kg_ha), args = list(min=min(ryedat$shoot_biomass_mean_kg_ha), max=max(ryedat$shoot_biomass_mean_kg_ha)))
+
+plot + stat + stat2 + stat3</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="Homework_08_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="gamma-probability-density" class="section level1">
+<h1>Gamma Probability Density</h1>
+<pre class="r"><code># gammaPars &lt;- fitdistr(ryedat$shoot_biomass_mean_kg_ha,&quot;gamma&quot;)
+# shapeML &lt;- gammaPars$estimate[&quot;shape&quot;]
+# rateML &lt;- gammaPars$estimate[&quot;rate&quot;]
+
+# stat4 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour=&quot;brown&quot;, n = length(ryedat$shoot_biomass_mean_kg_ha), args = # list(shape=shapeML, rate=rateML))
+
+# plot + stat + stat2 + stat3 + stat4</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
