@@ -11,6 +11,7 @@ library(upscaler)
 library(pracma)
 library(dplyr)
 library(readr)
+library(stringr)
 ```
 
 # Question 2: Set working directory and extract subfolders
@@ -39,6 +40,9 @@ count_data
 
 
 ```{r}
+
+years <- (2013:2025)
+
 for (i in 1:10) {
   print(subfolders[i])
   setwd(paste0("C:/Users/cbennin1/OneDrive - University of Vermont/Documents/BIOL6100/BenningBio6100/Homework_09_files/NEON_count-landbird","/", subfolders[i]))
@@ -66,7 +70,7 @@ head(dat)
 
 
 ```{r}
-library(stringr)
+library(Rmisc)
 years <- str_sub(dat$startDate, 1, 4)
 dat <- cbind(dat, years)
 

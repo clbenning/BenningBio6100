@@ -168,12 +168,12 @@ plot + stat + stat2 + stat3
 # Gamma Probability Density 
 
 ```{r}
-gammaPars <- fitdistr(ryedat$shoot_biomass_mean_kg_ha,"gamma")
-shapeML <- gammaPars$estimate["shape"]
-rateML <- gammaPars$estimate["rate"]
+# gammaPars <- fitdistr(ryedat$shoot_biomass_mean_kg_ha,"gamma")
+# shapeML <- gammaPars$estimate["shape"]
+# rateML <- gammaPars$estimate["rate"]
 
-stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(ryedat$shoot_biomass_mean_kg_ha), args = list(shape=shapeML, rate=rateML))
+# stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(ryedat$shoot_biomass_mean_kg_ha), args = # list(shape=shapeML, rate=rateML))
 
-plot + stat + stat2 + stat3 + stat4
+# plot + stat + stat2 + stat3 + stat4
 ```
 

@@ -1,0 +1,154 @@
+---
+title: "Homework_10"
+author: "clbenning"
+date: "2025-04-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidytuesdayR)
+library(tidyverse)
+library(ggplot2)
+
+dat <- tidytuesdayR::tt_load('2023-07-11')
+dat <- tidytuesdayR::tt_load(2023, week = 28)
+
+global_temps <- dat$global_temps
+
+seasonal_global_temps <- global_temps %>%
+  pivot_longer(cols = 16:19, 
+               names_to = "Season")
+seasonal_global_temps$Temp <- seasonal_global_temps$value
+
+monthly_global_temps <- global_temps %>%
+  pivot_longer(cols = 2:13, 
+               names_to = "Month")
+monthly_global_temps$Temp <- monthly_global_temps$value
+
+nh_temps <- dat$nh_temps
+sh_temps <- dat$sh_temps
+
+hem_temps <- rbind(nh_temps, sh_temps)
+hem_temps$Hemisphere <- rep(c("nh", "sh"), each = 144)
+
+hem_temps <- hem_temps %>%
+  pivot_longer(cols = 16:19, 
+               names_to = "Season")
+
+hem_temps$Temp <- hem_temps$value
+```
+
+# Ridge Plot
+
+## Plot the Land-Ocean Temperature Index for the Northern (nh) and Southern (sh) Hemispheres by meteorogical seasons
+
+```{r}
+library(ggridges)
+
+ridge <- ggplot(data = hem_temps, aes(x = Temp, y = Season, fill = Season)) +
+  ggridges::geom_density_ridges() +
+  ggridges::theme_ridges() +
+  facet_wrap(~Hemisphere, scale = "fixed") +
+  labs(title="Land-Ocean Temperature Index") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = "Temperature (°C)", y = "Seasons")
+
+ridge
+```
+
+# Bar Plot ----
+
+## Plot the changes in Land-Ocean Temperature Index in both hemispheres across meteorogical seasons and decades 
+
+```{r}
+library(Rmisc)
+
+# Summarise the data by decades 
+hem_temps_decades <- hem_temps %>%
+  mutate(Decade = floor(Year / 10) * 10)
+
+hem_temp_sum <- summarySE(hem_temps_decades, measurevar = "Temp", groupvars = c("Decade", "Hemisphere", "Season"), na.rm = TRUE)
+
+# Plot using a bar graph
+
+bar <- ggplot(data = hem_temp_sum) +
+  aes(x = Decade, y = Temp, fill = Hemisphere) + 
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values=c("darkolivegreen4", "goldenrod2")) +
+  facet_wrap(~Hemisphere, scale = "fixed") +
+  labs(x="Decade", y="Temperature (°C)") +
+  labs(title="Global Land-Ocean Temperature Index") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+
+bar
+```
+
+## Plot the changes in Global Land-Ocean Temperature Index across the seasons and include bars for standard deviation 
+```{r}
+# Summarise the data by decades 
+global_temps_decades <- seasonal_global_temps %>%
+  mutate(Decade = floor(Year / 10) * 10)
+
+global_temp_sum <- summarySE(global_temps_decades, measurevar = "Temp", groupvars = c("Decade", "Season"), na.rm = TRUE)
+
+# Plot using a bar graph with standard deviation 
+
+bar2 <- ggplot(data = global_temp_sum) +
+  aes(x = Decade, y = Temp, fill = Season) + 
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = (Temp-sd), ymax = (Temp+sd), width=.2)) +
+  scale_fill_manual(values=c("darkslategray3","goldenrod2","darkolivegreen4", "orangered3")) +
+  facet_wrap(~Season, scale = "fixed") +
+  labs(x="Decade", y="Temperature (°C)") +
+  labs(title="Global Land-Ocean Temperature Index") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw()
+
+bar2
+```
+
+# Scatter Plot ----
+
+## Plot the changes in temperature in both hemispheres and seasons with a linear regression line
+
+
+scale_fill_manual(values=c("darkslategray3","goldenrod2","darkolivegreen4", "orangered3")) +
+
+```{r}
+Scatter <- ggplot(data = hem_temp_sum) +
+  aes(x = Decade, y = Temp, color = Hemisphere) +
+  geom_point(size = 3, stroke = 0.5) +
+  geom_smooth(method="lm") +
+  labs(x="Decade", y="Temperature (°C)") +
+  labs(title="Global Land-Ocean Temperature Index") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  facet_wrap(~Season, scale = "fixed") +
+  theme_bw()
+
+Scatter
+```
+## Monthly scatter plots of changes in global temperature across the decades 
+```{r}
+# Summarise the data by decades 
+monthly_global_temps_decades <- monthly_global_temps %>%
+  mutate(Decade = floor(Year / 10) * 10)
+
+month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+monthly_global_temps_decades$Month <- factor(monthly_global_temps_decades$Month, 
+                                              levels = month_order)
+
+Scatter2 <- ggplot(data = monthly_global_temps_decades) + 
+            aes(x = Decade,y = Temp) + 
+            geom_point()+
+  facet_grid(.~Month) +
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 60, vjust = 0.5, hjust=.5, size = 7))+
+  labs(title="Monthly Global Land-Ocean Temperature Index") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x="Decade", y="Temperature (°C)")
+
+Scatter2 
+```
+
